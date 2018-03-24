@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import FlatButton from 'material-ui/FlatButton';
+import '../../modules/extended-modules';
 
 export default class Home extends React.Component<any, any> {
 

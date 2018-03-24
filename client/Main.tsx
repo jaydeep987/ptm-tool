@@ -11,17 +11,6 @@ import getRoutes from './app/modules/routes';
 import { history, store } from './app/modules/store';
 import muiDefaultTheme from './app/theme/default.theme';
 
-/**
- * https://github.com/zilverline/react-tap-event-plugin/issues/58
- * Macmee commented on Apr 6, 2017
- */
-declare module 'react' {
-  /* tslint:disable-next-line:interface-name */
-  interface DOMAttributes<T> {
-      onTouchTap?: React.EventHandler<React.TouchEvent<T>>;
-  }
-}
-
 export default class Main extends React.Component<any, any> {
   constructor(props, state) {
     super(props, state);

@@ -2,3 +2,5 @@ node_modules
 lib
 build
 package-lock.json
+*.log
+*.log.*
