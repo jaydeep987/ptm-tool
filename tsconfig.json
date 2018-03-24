@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "declaration": true,
+    "declarationDir": "lib",
+    "baseUrl": "./client", // TODO for api also
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "outDir": "lib", // TODO for api also
+    "preserveConstEnums": true,
+    "pretty": true,
+    "sourceMap": true
+  },
+  "include": [
+    "client/*.ts", // TODO for api also
+    "client/*.tsx" // TODO for api also
+  ]
+}
