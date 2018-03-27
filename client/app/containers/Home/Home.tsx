@@ -9,15 +9,14 @@ export default class Home extends React.Component<any, any> {
     super(props, state);
   }
 
-  public handleClick() {
-    alert('1');
-  }
-
   public render() {
     return(
       <div>
-        This is Home!
-        <FlatButton label="Click" onTouchTap={this.handleClick} />
+        <h3>PTM</h3>
+        <pre>
+          This is home of tool. More will be added soon. <br/>
+          Following part will be moved to its own container.
+        </pre>
       </div>
     );
   }
