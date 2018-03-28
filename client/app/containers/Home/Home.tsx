@@ -15,7 +15,6 @@ class Home extends React.Component<any, any> {
 
     this.loadGraph = this.loadGraph.bind(this);
   }
-
   public render() {
     const loadBtnStyle: object = {
         marginLeft: 10,
@@ -26,7 +25,6 @@ class Home extends React.Component<any, any> {
           <RaisedButton label="Load" style={loadBtnStyle} onClick={this.loadGraph} />
 
           {this.props.isRequesting && <h3> Loading ... </h3>}
-
       </div>
     );
   }
