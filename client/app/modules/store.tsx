@@ -1,9 +1,11 @@
 import createHistory from 'history/createBrowserHistory';
 
 import { History } from 'history';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
-import { applyMiddleware, compose, createStore, Store } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
 import thunk from 'redux-thunk';
+
+import reducers from '../reducers';
 
 declare global {
   /* tslint:disable-next-line:interface-name */
@@ -13,15 +15,15 @@ declare global {
 /* https://stackoverflow.com/questions/43900035/ts4023-exported-variable-x-has-or-is-using-name-y-from-external-module-but */
 const history: History = createHistory();
 
-const initialState = {};
-const enhancers = [];
-const middleware = [
+const initialState: object = {};
+const enhancers: any = [];
+const middleware: Middleware[] = [
   thunk,
   routerMiddleware(history),
 ];
 
 if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = window.devToolsExtension;
+  const devToolsExtension: any = window.devToolsExtension;
 
   if (typeof devToolsExtension === 'function') {
     enhancers.push(devToolsExtension());
@@ -34,7 +36,7 @@ const composedEnhancers = compose(
 );
 
 const store: Store<any> = createStore(
-  routerReducer,
+  reducers,
   initialState,
   composedEnhancers,
 );
