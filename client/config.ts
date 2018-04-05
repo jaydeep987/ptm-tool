@@ -1,6 +1,8 @@
 export interface IConfig {
   apiHost: string;
   apiPort: number;
+  apiDomain: string;
+  jiraApiBaseUrl: string;
 }
 
 const apiConfig: any = {
@@ -14,9 +16,13 @@ const apiConfig: any = {
   },
 }[process.env.USE_FAKE_API ? 'fakeApi' : 'realApi'];
 
+const apiDomain: string = `https://${apiConfig.host}${apiConfig.port ? ':' + apiConfig.port : ''}`;
+
 const config: IConfig = {
   apiHost: apiConfig.host,
   apiPort: apiConfig.port,
+  apiDomain,
+  jiraApiBaseUrl: `/jira/rest/api/latest/issue`,
 };
 
 export default config;

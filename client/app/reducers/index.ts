@@ -1,11 +1,11 @@
 import { routerReducer } from 'react-router-redux';
 import { combineReducers, Reducer } from 'redux';
 
-import jirahistory from './jirahistory';
+import jiraProjectIssues from './jiraProjectIssues';
 
-const reducers: Reducer<{}> = combineReducers({
-  ...routerReducer,
-  jirahistory,
+const reducers: Reducer<any> = combineReducers({
+  routerReducer,
+  jiraProjectIssues,
 });
 
 export default reducers;

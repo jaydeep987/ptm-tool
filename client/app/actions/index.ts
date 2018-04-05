@@ -1,26 +1,28 @@
-export const ACTION_REQUEST_JIRA_HISTORY: string = 'REQUEST_JIRA_HISTORY';
-export const ACTION_RECEIVE_JIRA_HISTORY: string = 'RECEIVE_JIRA_HISTORY';
+import { loadJiraProjectIssues } from '../modules/apiHelpers/jiraRequest';
 
-export function requestJiraHistory(jiraId): object {
+export const ACTION_REQUEST_JIRA_PROJECT_ISSUES: string = 'REQUEST_JIRA_PROJECT_ISSUES';
+export const ACTION_RECEIVE_JIRA_PROJECT_ISSUES: string = 'RECEIVE_JIRA_PROJECT_ISSUES';
+
+export function requestJiraProjectIssues(jiraProjectId): object {
   return {
-    type: ACTION_REQUEST_JIRA_HISTORY,
-    jiraId,
+    type: ACTION_REQUEST_JIRA_PROJECT_ISSUES,
+    jiraProjectId,
   };
 }
 
-export function receiveJiraHistory(jiraId, history): object {
+// do caching
+export function receiveJiraProjectIssues(jiraProjectId, jiraProjectIssues): object {
   return {
-    type: ACTION_RECEIVE_JIRA_HISTORY,
-    jiraId,
-    history,
+    type: ACTION_RECEIVE_JIRA_PROJECT_ISSUES,
+    jiraProjectId,
+    jiraProjectIssues,
   };
 }
 
-export function fetchJiraHistory(jiraId: string) {
+export function fetchJiraProjectIssues(jiraProjectId: string) {
   return (dispatch) => {
-    dispatch(requestJiraHistory(jiraId));
-    return fetch('http://localhost:3001/test/')
-      .then((response) => response.json())
-      .then((json) => setTimeout(() => dispatch(receiveJiraHistory(jiraId, json)), 3000));
+    dispatch(requestJiraProjectIssues(jiraProjectId));
+    return loadJiraProjectIssues(jiraProjectId)
+      .then((response) => setTimeout(() => dispatch(receiveJiraProjectIssues(jiraProjectId, response.data)), 1000));
   };
 }

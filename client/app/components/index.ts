@@ -1,5 +1,5 @@
-import AssisgnHistoryGraph from './AssisgnHistoryGraph/AssisgnHistoryGraph';
+import AssignHistoryTimeline from './AssisgnHistoryTimeline/AssisgnHistoryTimeline';
 
 export {
-  AssisgnHistoryGraph,
+  AssignHistoryTimeline,
 };

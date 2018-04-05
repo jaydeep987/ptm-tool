@@ -10,6 +10,7 @@ const apiBuild = 'api_build';
 const htmlTemplate = `${clientSrcDir}/public/index.html`;
 const clientStyles = `${clientSrcDir}/assets/styles`;
 const clientVendorManifest = `${clientBuild}/vendor.manifest.json`;
+const clientIndexJs = `${clientSrcDir}/index.tsx`;
 
 function absPath(realPath) {
   return path.resolve(rootDir, realPath);
@@ -28,6 +29,7 @@ const options = {
 };
 
 const paths = {
+  clientIndexJs: absPath(clientIndexJs),
   clientSrc: absPath(clientSrcDir),
   apiSrc: absPath(apiSrcDir),
   clientBuild: absPath(clientBuild),

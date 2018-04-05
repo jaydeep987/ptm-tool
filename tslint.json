@@ -4,9 +4,9 @@
     "quotemark": [true, "single", "jsx-double"],
     "jsx-wrap-multiline": false,
     "no-submodule-imports": [false],
-    "no-unused-variable": [true, {}],
     "no-unused-expression": [true],
     "max-line-length": [true, 180],
-    "object-literal-sort-keys": [false]
+    "object-literal-sort-keys": [false],
+    "no-console": [false]
   }
 }
