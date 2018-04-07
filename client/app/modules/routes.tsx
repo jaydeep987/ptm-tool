@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import { Route, Router } from 'react-router-dom';
 
-import { Home } from '../containers';
+import { Home, Sidebar } from '../containers';
 
 export default (history) => {
   return (
     <Router history={history}>
-      <Route path="/" component={Home} />
+      <div>
+        <Route path="/" component={Home} />
+        <Route path="/sidebar" component={Sidebar} />
+      </div>
     </Router>
   );
 };

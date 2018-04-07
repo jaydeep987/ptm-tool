@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
-import getRoutes from './app/modules/routes';
+import { Home } from './app/containers';
 import { history, store } from './app/modules/store';
 import muiDefaultTheme from './app/theme/default.theme';
 
@@ -25,7 +25,7 @@ export default class Main extends React.Component<any, any> {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <MuiThemeProvider muiTheme={muiDefaultTheme}>
-              {getRoutes(history)}
+              <Home />
           </MuiThemeProvider>
         </ConnectedRouter>
       </Provider>
