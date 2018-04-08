@@ -11,6 +11,8 @@ import { Home } from './app/containers';
 import { history, store } from './app/modules/store';
 import muiDefaultTheme from './app/theme/default.theme';
 
+import './assets/styles/material-ui-icons.css';
+
 export default class Main extends React.Component<any, any> {
   constructor(props, state) {
     super(props, state);

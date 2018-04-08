@@ -2,11 +2,27 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import config from '../../../config';
 
-const axiosConfig: AxiosRequestConfig = {
-  baseURL: config.apiDomain,
-  timeout: 3000,
-};
+export enum IApi {
+  JIRA = 'jiraApi',
+  PTM = 'ptmApi',
+}
 
-const apiInstance: AxiosInstance = axios.create(axiosConfig);
+export interface IRequestOptions {
+  method?: string;
+  params?: string;
+  data?: object;
+  timeout?: number;
+}
 
-export default apiInstance;
+function getApiInstance(whichApi: IApi): AxiosInstance {
+  const axiosConfig: AxiosRequestConfig = {
+    baseURL: config.apiDomain[whichApi],
+    timeout: 3000,
+  };
+
+  const apiInstance: AxiosInstance = axios.create(axiosConfig);
+
+  return apiInstance;
+}
+
+export default getApiInstance;

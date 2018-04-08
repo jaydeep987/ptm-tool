@@ -4581,9 +4581,31 @@ function getData() {
     ...jiraIssues,
     ...jiraProjectIssues,
   }
+
+  const menuApiData = {
+      "menuIds": [
+          { id: 1 },
+          { id: 2 }
+      ],
+      "menus": [
+          {
+              menuId: 1,
+              name: 'Home',
+              type: 'main',
+              icon: 'home',
+          },
+          {
+            menuId: 2,
+            name: 'JIRA Assign Timeline',
+            type: 'main',
+            icon: 'timeline',
+        },
+      ]
+  }
   
   return {
     ...jiraApiData,
+    ...menuApiData,
   };
 };
 

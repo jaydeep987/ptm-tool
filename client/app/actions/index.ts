@@ -10,7 +10,7 @@ export function requestJiraProjectIssues(jiraProjectId): object {
   };
 }
 
-// do caching
+// TODO: do caching
 export function receiveJiraProjectIssues(jiraProjectId, jiraProjectIssues): object {
   return {
     type: ACTION_RECEIVE_JIRA_PROJECT_ISSUES,

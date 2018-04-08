@@ -20,7 +20,6 @@ export interface IHomeProps {
 }
 
 const mainPaperStyle: any = {
-  width: '90%',
   margin: '0 auto',
   display: 'block',
   padding: 5,
@@ -51,6 +50,7 @@ class JiraAssignHistoryTimeline extends React.Component<IHomeProps, IHomeState> 
     const loadBtnStyle: object = {
         marginLeft: 10,
     };
+    console.log(this.props);
     return(
       <Paper style={mainPaperStyle}>
         <Paper style={jiraInputToolbarStyle} zDepth={2}>

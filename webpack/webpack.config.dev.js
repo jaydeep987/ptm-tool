@@ -65,10 +65,10 @@ function webpackConfig() {
           ],
         },
         {
-          test: /\.(css|scss|sass)$/,
+          test: /\.css$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader', 'sass-loader'],
+            use: ['css-loader', 'postcss-loader'],
           }),
         },
         {
@@ -83,6 +83,10 @@ function webpackConfig() {
             },
           }],
         },
+        {
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          loader: 'url-loader?limit=100000',
+        },
       ],
     }, // module
 
@@ -95,7 +99,13 @@ function webpackConfig() {
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-          USE_FAKE_API: JSON.stringify(process.env.USE_FAKE_API),
+          DEVAPIHOST: JSON.stringify(process.env.DEVAPIHOST),
+          DEVAPIPORT: JSON.stringify(process.env.DEVAPIPORT),
+          PTMAPIHOST: JSON.stringify(process.env.PTMAPIHOST),
+          PTMAPIPORT: JSON.stringify(process.env.PTMAPIPORT),
+          JIRAAPIHOST: JSON.stringify(process.env.JIRAAPIHOST),
+          JIRAAPIPORT: JSON.stringify(process.env.JIRAAPIPORT),
+          PTM_JIRA_API: JSON.stringify(process.env.PTM_JIRA_API),
         },
       }),
       // HTML Generator
@@ -103,6 +113,8 @@ function webpackConfig() {
         template: settings.paths.htmlTemplate,
         title: settings.packageJson.name,
       }),
+
+      new ExtractTextPlugin('[name].css'),
 
       new CaseSensitivePathsPlugin(),
     ],

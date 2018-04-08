@@ -1,14 +1,9 @@
 import { AxiosRequestConfig } from 'axios';
 
 import config from '../../../config';
-import apiInstance from './apiInstance';
+import getApiInstance, { IApi, IRequestOptions } from './apiInstance';
 
-export interface IRequestOptions {
-  method?: string;
-  params?: string;
-  data?: object;
-  timeout?: number;
-}
+const apiInstance = getApiInstance(IApi.JIRA);
 
 function loadJiraIssue(jiraId: string, options: IRequestOptions = {}): Promise<any> {
   const reqConfig: AxiosRequestConfig = {
