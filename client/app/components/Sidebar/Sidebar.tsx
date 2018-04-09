@@ -11,8 +11,9 @@ import SidebarItems from './SidebarItems';
 import sidebarStyles from './sidebarStyles';
 
 export interface ISidebarProps {
-  open: boolean;
-  dispatch: Dispatch<any>;
+  open?: boolean;
+  dispatch?: Dispatch<any>;
+  menus: any[];
 }
 
 class Sidebar extends React.Component<ISidebarProps, any> {
@@ -29,7 +30,7 @@ class Sidebar extends React.Component<ISidebarProps, any> {
         <Drawer width={sidebarStyles.mainDrawer.width} containerStyle={sidebarStyles.mainDrawer} open={this.props.open}>
           <SidebarHeader handleSidebarToggle={this.handleSidebarToggle} />
           <FullBleedDivider/>
-          <SidebarItems />
+          <SidebarItems menus={this.props.menus} />
         </Drawer>
         <AlternativeDrawer open={!this.props.open} handleSidebarToggle={this.handleSidebarToggle} />
       </div>
@@ -42,8 +43,8 @@ class Sidebar extends React.Component<ISidebarProps, any> {
   }
 }
 
-function mapStateToProps(state) {
-  const { sidebarToggle } = state;
+function mapStateToProps(state, ownProps) {
+  const { sidebar: { sidebarToggle } } = state;
   const { open } = sidebarToggle || { open: true };
 
   return { open };

@@ -1,6 +1,4 @@
-import getApiInstance from './apiInstance';
-import * as jiraRequest from './jiraRequest';
+import * as jiraRequest from './jiraRequests';
+import * as ptmRequests from './ptmRequests';
 
-export default getApiInstance;
-
-export { jiraRequest };
+export { jiraRequest, ptmRequests };

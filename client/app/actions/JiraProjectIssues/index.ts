@@ -1,4 +1,4 @@
-import { loadJiraProjectIssues } from '../modules/apiHelpers/jiraRequest';
+import { requestIssues } from '../../modules/apiHelpers/jiraRequests';
 
 export const ACTION_REQUEST_JIRA_PROJECT_ISSUES: string = 'REQUEST_JIRA_PROJECT_ISSUES';
 export const ACTION_RECEIVE_JIRA_PROJECT_ISSUES: string = 'RECEIVE_JIRA_PROJECT_ISSUES';
@@ -22,7 +22,7 @@ export function receiveJiraProjectIssues(jiraProjectId, jiraProjectIssues): obje
 export function fetchJiraProjectIssues(jiraProjectId: string) {
   return (dispatch) => {
     dispatch(requestJiraProjectIssues(jiraProjectId));
-    return loadJiraProjectIssues(jiraProjectId)
-      .then((response) => setTimeout(() => dispatch(receiveJiraProjectIssues(jiraProjectId, response.data)), 1000));
+    return requestIssues.loadJiraProjectIssues(jiraProjectId)
+      .then((response) => dispatch(receiveJiraProjectIssues(jiraProjectId, response.data)));
   };
 }

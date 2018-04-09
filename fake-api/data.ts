@@ -4593,12 +4593,14 @@ function getData() {
               name: 'Home',
               type: 'main',
               icon: 'home',
+              targetRoute: 'homeLandingPage',
           },
           {
             menuId: 2,
             name: 'JIRA Assign Timeline',
             type: 'main',
             icon: 'timeline',
+            targetRoute: 'jiraAssignTimeline',
         },
       ]
   }

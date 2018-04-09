@@ -30,7 +30,7 @@ class Home extends React.Component<any, any> {
 }
 
 function mapStateToProps(state) {
-  const { sidebarToggle } = state;
+  const { sidebar: { sidebarToggle } } = state;
   const { open: isSidebarOpen } = sidebarToggle;
 
   return {

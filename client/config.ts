@@ -71,7 +71,7 @@ const config: IConfig = {
   ...api,
   apiDomain: { ...apiDomain },
   jiraApiBaseUrl: '/jira/rest/api/latest/issue',
-  ptmApiBaseUrl: '/ptm/',
+  ptmApiBaseUrl: '/ptm',
 };
 
 export default config;

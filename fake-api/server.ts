@@ -25,6 +25,7 @@ console.log(config.jiraApiBaseUrl);
 server.use(jsonServer.rewriter({
   [`${config.jiraApiBaseUrl}/:jiraId`]: '/jiraKeys/:jiraId/issues',
   [`${config.jiraApiBaseUrl}/search/\\?jql=:project=%22:projectid%22`]: '/jiraProjects/:projectid/issues',
+  [`${config.ptmApiBaseUrl}/menus`]: '/menus',
 }));
 
 // To return singular object for jira issue api

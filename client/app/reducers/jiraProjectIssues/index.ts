@@ -1,4 +1,4 @@
-import * as actions from '../../actions';
+import * as actions from '../../actions/JiraProjectIssues';
 
 const initialData: IJiraHistoryIssuesReducerState = {
   isRequesting: undefined,

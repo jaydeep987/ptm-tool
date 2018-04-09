@@ -4,10 +4,10 @@ import { Paper, RaisedButton, TextField } from 'material-ui';
 import { connect, Dispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-import * as actions from '../../actions';
+import * as actions from '../../actions/JiraProjectIssues';
 import '../../modules/extended-modules';
 import { IJiraHistoryIssuesReducerState } from '../../reducers/jiraProjectIssues';
-import { AssignHistoryTimeline } from './../../components';
+import { AssignHistoryTimeline, Loading } from './../../components';
 
 export interface IHomeState {
   jiraProjectId: string;
@@ -58,10 +58,9 @@ class JiraAssignHistoryTimeline extends React.Component<IHomeProps, IHomeState> 
           <RaisedButton label="Load" style={loadBtnStyle} onClick={this.loadGraph} />
         </Paper>
         <Paper style={assignHistoryTimelineStyle}>
-          {this.props.isRequesting && <h3> Loading ...</h3>}
+          {this.props.isRequesting && <Loading />}
           {this.props.isRequesting === false && <AssignHistoryTimeline data={this.props.issuesData} />}
         </Paper>
-        <Link to="/sidebar"> Sidebar </Link>
       </Paper>
     );
   }
