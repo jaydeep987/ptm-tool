@@ -11,6 +11,7 @@ const htmlTemplate = `${clientSrcDir}/public/index.html`;
 const clientStyles = `${clientSrcDir}/assets/styles`;
 const clientVendorManifest = `${clientBuild}/vendor.manifest.json`;
 const clientIndexJs = `${clientSrcDir}/index.tsx`;
+const nodeModules = `${rootDir}/node_modules`;
 
 function absPath(realPath) {
   return path.resolve(rootDir, realPath);
@@ -37,6 +38,7 @@ const paths = {
   style: absPath(clientStyles),
   htmlTemplate: absPath(htmlTemplate),
   manifest: absPath(clientVendorManifest),
+  nodeModules: absPath(nodeModules),
 };
 
 const checks = {

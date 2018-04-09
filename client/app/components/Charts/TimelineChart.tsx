@@ -2,10 +2,12 @@ import * as React from 'react';
 
 import { GoogleCharts } from 'google-charts';
 import { map } from 'lodash';
-
 import { Moment } from 'moment';
+import { compose, withHandlers, withState } from 'recompose';
+
 import { DateFormats, Delimiters, formatDate } from '../../modules/utils/dateUtils';
 import { getUniqueShortId } from '../../modules/utils/stringUtils';
+import Loading from '../Loading/Loading';
 
 declare global {
   /* tslint:disable-next-line:interface-name */
@@ -38,9 +40,16 @@ export interface ITimelineChartOptionsAll extends ITimelineChartOptions, google.
 
 export interface ITimelineChartProps {
   chartOptions: ITimelineChartOptions;
+  toggleLoading?: () => any;
+  isLoading?: boolean;
 }
 
-export default class TimelineChart extends React.Component<ITimelineChartProps, any> {
+const containerStyle: React.CSSProperties = {
+  position: 'relative',
+  padding: 10,
+};
+
+class TimelineChart extends React.Component<ITimelineChartProps, any> {
 
   private chartOptions: ITimelineChartOptionsAll;
 
@@ -82,13 +91,15 @@ export default class TimelineChart extends React.Component<ITimelineChartProps, 
 
   public render() {
     return (
-      <div>
+      <div style={containerStyle}>
+        {this.props.isLoading && <Loading left={100} />}
         <div id={this.chartOptions.containerId || 'gantt-chart'} />
       </div>
     );
   }
 
   private drawTimeLine() {
+    console.log('1');
     const container: Element = document.getElementById(this.chartOptions.containerId);
     const dataTable = new GoogleCharts.api.visualization.DataTable();
     const chart: google.visualization.Timeline = new GoogleCharts.api.visualization.Timeline(container);
@@ -112,8 +123,19 @@ export default class TimelineChart extends React.Component<ITimelineChartProps, 
 
     // add all rows
     dataTable.addRows(data);
+    // when chart is ready, remove loading anim
+    google.visualization.events.addListener(chart, 'ready', this.props.toggleLoading);
 
     // draw chart
     chart.draw(dataTable);
   }
 }
+
+const withLoading = compose(
+  withState('isLoading', 'toggleLoading', true),
+  withHandlers({
+    toggleLoading: ({ toggleLoading }) => () => toggleLoading((current) => !current),
+  }),
+);
+
+export default withLoading(TimelineChart);

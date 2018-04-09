@@ -123,7 +123,7 @@ function webpackConfig() {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       modules: [
         __dirname,
-        path.resolve(__dirname, '../node_modules'),
+        settings.paths.nodeModules,
       ],
     }, // resolve
     node: {

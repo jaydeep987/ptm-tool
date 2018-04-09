@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Paper, RaisedButton, TextField } from 'material-ui';
+import { AppBar, Paper, RaisedButton, TextField } from 'material-ui';
 import { connect, Dispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
@@ -50,9 +50,9 @@ class JiraAssignHistoryTimeline extends React.Component<IHomeProps, IHomeState> 
     const loadBtnStyle: object = {
         marginLeft: 10,
     };
-    console.log(this.props);
     return(
       <Paper style={mainPaperStyle}>
+        <AppBar title="JIRA Assignment History Timeline" iconStyleLeft={{display: 'none'}} />
         <Paper style={jiraInputToolbarStyle} zDepth={2}>
           <TextField hintText="JIRA Project ID" value={this.state.jiraProjectId} onChange={this.updateInputJiraId} />
           <RaisedButton label="Load" style={loadBtnStyle} onClick={this.loadGraph} />

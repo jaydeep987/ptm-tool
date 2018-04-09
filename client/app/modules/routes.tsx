@@ -1,14 +1,15 @@
 import * as React from 'react';
 
-import { Route, Router } from 'react-router-dom';
+import { Redirect, Route, Router } from 'react-router-dom';
 
-import { Home, JiraAssignHistoryTimeline } from '../containers';
+import { Home, HomeLandingPage, JiraAssignHistoryTimeline } from '../containers';
 
 export default (history) => {
   return (
     <Router history={history}>
       <div>
-        <Route path="/home" component={Home} />
+        <Redirect to="/homeLandingPage" />
+        <Route path="/homeLandingPage" component={HomeLandingPage} />
         <Route path="/jiraAssignTimeline" component={JiraAssignHistoryTimeline} />
       </div>
     </Router>
