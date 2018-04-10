@@ -5,7 +5,7 @@ import moment = require('moment');
 import { forEach, map } from 'lodash';
 
 import { DateFormats, parseDate } from '../../modules/utils/dateUtils';
-import { TimelineChart } from '../Charts';
+
 import { ITimelineChartOptions, ITimelineData } from '../Charts/TimelineChart';
 import generateAndGetChartData from './timelineDataGenerator';
 
@@ -35,7 +35,7 @@ export default class AssisgnHistoryTimeline extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        <TimelineChart chartOptions={this.chartOptions} />
+        abc
       </div>
     );
   }

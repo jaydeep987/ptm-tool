@@ -5,7 +5,7 @@ const packageJson = require('../package.json');
 const rootDir = fs.realpathSync(process.cwd());
 const clientSrcDir = 'client';
 const apiSrcDir = 'api';
-const clientBuild = 'client_build';
+const clientBuild = 'static';
 const apiBuild = 'api_build';
 const htmlTemplate = `${clientSrcDir}/public/index.html`;
 const clientStyles = `${clientSrcDir}/assets/styles`;
@@ -24,7 +24,7 @@ function getFileName() {
 }
 
 const options = {
-  fileName: `${getFileName()}.min.js`,
+  fileName: `${getFileName()}.js`,
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 8081,
 };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { GoogleCharts } from 'google-charts';
+import GoogleCharts = require('google-charts');
 import { map } from 'lodash';
 import { Moment } from 'moment';
 import { compose, withHandlers, withState } from 'recompose';
