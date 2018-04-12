@@ -22,35 +22,6 @@ function sidebarToggle(state: ISidebarToggleReducerState = initialState, action)
   }
 }
 
-export interface ISidebarAllMenusState {
-  isRequesting?: boolean;
-  menus?: any;
-}
-
-const initialSidebarAllMenusState: ISidebarAllMenusState = {
-  isRequesting: undefined,
-  menus: {},
-};
-
-function sidebarAllMenus(state: ISidebarAllMenusState = initialSidebarAllMenusState, action) {
-  switch (action.type) {
-    case actions.ACTION_REQUEST_ALL_MENUS:
-      return {
-        ...state,
-        isRequesting: true,
-      };
-    case actions.ACTION_RECEIVE_ALL_MENUS:
-      return {
-        ...state,
-        isRequesting: false,
-        menus: action.menus,
-      };
-    default:
-      return state;
-  }
-}
-
 export default combineReducers({
-  sidebarAllMenus,
   sidebarToggle,
 });

@@ -6,7 +6,7 @@ import { forEach, map } from 'lodash';
 
 import { DateFormats, parseDate } from '../../modules/utils/dateUtils';
 
-import { ITimelineChartOptions, ITimelineData } from '../Charts/TimelineChart';
+import TimelineChart, { ITimelineChartOptions, ITimelineData } from '../Charts/TimelineChart';
 import generateAndGetChartData from './timelineDataGenerator';
 
 export default class AssisgnHistoryTimeline extends React.Component<any, any> {
@@ -35,7 +35,7 @@ export default class AssisgnHistoryTimeline extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        abc
+        <TimelineChart chartOptions={this.chartOptions} />
       </div>
     );
   }

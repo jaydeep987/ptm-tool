@@ -8,4 +8,6 @@ import Main from './Main';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-ReactDOM.render(<Main />, document.getElementById('ptm-main'));
+const render = !!module.hot && ReactDOM.render || ReactDOM.hydrate;
+
+render(<Main />, document.getElementById('ptm-main'));

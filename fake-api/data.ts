@@ -4588,15 +4588,24 @@ function getData() {
           { id: 2 }
       ],
       "menus": [
-          {
-              menuId: 1,
-              name: 'Home',
-              type: 'main',
-              icon: 'home',
-              targetRoute: 'homeLandingPage',
-          },
-          {
+        {
+            menuId: 1,
+            name: 'Home',
+            type: 'main',
+            icon: 'home',
+            default: true,
+            targetRoute: 'homeLandingPage',
+        },
+        {
             menuId: 2,
+            name: 'New Task',
+            type: 'main',
+            icon: 'playlist_add',
+            default: true,
+            targetRoute: 'newTaskForm',
+        },
+        {
+            menuId: 3,
             name: 'JIRA Assign Timeline',
             type: 'main',
             icon: 'timeline',

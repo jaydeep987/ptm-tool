@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import * as https from 'https';
 
 import config from '../../../config';
 
@@ -19,6 +20,9 @@ function getApiInstance(whichApi: IApi): AxiosInstance {
   const axiosConfig: AxiosRequestConfig = {
     baseURL: config.apiDomain[whichApi],
     timeout: 3000,
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false,
+    }),
   };
 
   const apiInstance: AxiosInstance = axios.create(axiosConfig);

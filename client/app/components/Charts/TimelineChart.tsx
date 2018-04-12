@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import GoogleCharts = require('google-charts');
+import GoogleCharts from './GoogleCharts';
+
 import { map } from 'lodash';
 import { Moment } from 'moment';
 import { compose, withHandlers, withState } from 'recompose';
@@ -9,12 +10,6 @@ import { DateFormats, Delimiters, formatDate } from '../../modules/utils/dateUti
 import { getUniqueShortId } from '../../modules/utils/stringUtils';
 import Loading from '../Loading/Loading';
 
-declare global {
-  /* tslint:disable-next-line:interface-name */
-  interface Window {
-    google: any;
-  }
-}
 function getFormattedDate(): string {
   return formatDate(DateFormats.YYYYMMDD)(this.y);
 }
@@ -99,7 +94,6 @@ class TimelineChart extends React.Component<ITimelineChartProps, any> {
   }
 
   private drawTimeLine() {
-    console.log('1');
     const container: Element = document.getElementById(this.chartOptions.containerId);
     const dataTable = new GoogleCharts.api.visualization.DataTable();
     const chart: google.visualization.Timeline = new GoogleCharts.api.visualization.Timeline(container);

@@ -20,6 +20,8 @@
 
 "plugins": [
   "react-hot-loader/babel",
-  "transform-object-assign"
+  "transform-object-assign",
+  "dynamic-import-webpack",
+  "react-loadable/babel"
 ]
 }

@@ -54,7 +54,7 @@ class JiraAssignHistoryTimeline extends React.Component<IHomeProps, IHomeState> 
       <Paper style={mainPaperStyle}>
         <AppBar title="JIRA Assignment History Timeline" iconStyleLeft={{display: 'none'}} />
         <Paper style={jiraInputToolbarStyle} zDepth={2}>
-          <TextField hintText="JIRA Project ID" value={this.state.jiraProjectId} onChange={this.updateInputJiraId} />
+          <TextField hintText="JIRA Project ID" floatingLabelText="JIRA Project ID" value={this.state.jiraProjectId} onChange={this.updateInputJiraId} />
           <RaisedButton label="Load" style={loadBtnStyle} onClick={this.loadGraph} />
         </Paper>
         <Paper style={assignHistoryTimelineStyle}>

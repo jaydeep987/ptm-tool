@@ -1,41 +1,22 @@
 import * as React from 'react';
 
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-import { connect, Dispatch } from 'react-redux';
+import Loadable = require('react-loadable');
 
-import { fetchSidebarMenus } from '../../actions/Sidebar';
-import { Sidebar } from '../../components';
+import { Loading } from '../../components';
+import { loadAllMenus } from '../../modules/apiHelpers/ptmRequests/requestMenus';
 
-export interface ISidebarMenu {
-  dispatch?: Dispatch<any>;
-  isRequesting?: boolean;
-  menus: any;
-}
+const AsyncSidebarMenu = Loadable.Map({
+  loader: {
+    Sidebar: () => import('../../components/Sidebar/Sidebar'),
+    sidebarMenuData: () => loadAllMenus().then((response) => response.data),
+  },
+  loading: () => <Loading size={40} left={150} top={150} />,
+  render(loaded, props) {
+    const Component = loaded.Sidebar.default;
+    const menus = loaded.sidebarMenuData || [];
 
-class SidebarMenu extends React.Component <ISidebarMenu, any> {
-  constructor(props) {
-    super(props);
-  }
+    return <Component {...props} menus={menus} />;
+  },
+});
 
-  public componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchSidebarMenus());
-  }
-
-  public render() {
-    return(
-      <div>
-        {this.props.isRequesting && <RefreshIndicator size={40} left={150} top={150} status="loading" />}
-        {this.props.isRequesting === false && <Sidebar menus={this.props.menus} />}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    ...state.sidebar.sidebarAllMenus,
-  };
-};
-
-export default connect(mapStateToProps)(SidebarMenu);
+export default AsyncSidebarMenu;

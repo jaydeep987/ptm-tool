@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { SidebarMenu } from '..';
+
 import sidebarStyles from '../../components/Sidebar/sidebarStyles';
-import getRoutes from '../../modules/routes';
 
 const SidebarTarget: any = styled.div`
   padding-left: ${(props: any) => props.isSidebarOpen ? sidebarStyles.mainDrawer.width : sidebarStyles.secondDrawer.width}px;
@@ -21,7 +21,7 @@ class Home extends React.Component<any, any> {
       <div>
         <SidebarMenu />
         <SidebarTarget isSidebarOpen={this.props.isSidebarOpen}>
-          {getRoutes()}
+          {this.props.children}
         </SidebarTarget>
       </div>
     );

@@ -10,23 +10,3 @@ export function toggleSidebar(isOpen: boolean) {
     isOpen,
   };
 }
-
-export function requestAllMenus() {
-  return {
-    type: ACTION_REQUEST_ALL_MENUS,
-  };
-}
-
-export function receiveAllMenus(menus) {
-  return {
-    type: ACTION_RECEIVE_ALL_MENUS,
-    menus,
-  };
-}
-
-export function fetchSidebarMenus() {
-  return (dispatch) => {
-    dispatch(requestAllMenus());
-    loadAllMenus().then((response) => dispatch(receiveAllMenus(response.data)));
-  };
-}

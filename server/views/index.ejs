@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PTM</title>
+  <link rel="shortcut" src="favicon.ico">
+  <% for (var i = 0; i < styles.length; i++) { %>
+  <link rel="stylesheet" href="<%= styles[i] %>">
+  <% } %>
+  <%- styleTags %>
+  <script>
+    window.__PRELOADED_STATE__ = <%- state %>;
+  </script>
+</head>
+
+<body>
+  <div id="ptm-main"><%- content %></div>
+  <% for (var i = 0; i < clientJs.length; i++) { %>
+  <script src="<%- clientJs[i] %>" charSet="UTF-8" defer></script>
+  <% } %>
+</body>
+
+</html>

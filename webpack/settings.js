@@ -12,6 +12,8 @@ const clientStyles = `${clientSrcDir}/assets/styles`;
 const clientVendorManifest = `${clientBuild}/vendor.manifest.json`;
 const clientIndexJs = `${clientSrcDir}/index.tsx`;
 const nodeModules = `${rootDir}/node_modules`;
+const favicon = `${rootDir}/favicon.ico`;
+const reactLoadableFile = `${clientBuild}/react-loadable.json`;
 
 function absPath(realPath) {
   return path.resolve(rootDir, realPath);
@@ -24,7 +26,9 @@ function getFileName() {
 }
 
 const options = {
-  fileName: `${getFileName()}.js`,
+  fileName: `${getFileName()}.[name].js`,
+  cssBundleFileName: 'bundle.css',
+  bundleAssetsFileName: 'assets.json',
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 8081,
 };
@@ -39,6 +43,8 @@ const paths = {
   htmlTemplate: absPath(htmlTemplate),
   manifest: absPath(clientVendorManifest),
   nodeModules: absPath(nodeModules),
+  favicon: absPath(favicon),
+  reactLoadableFile: absPath(reactLoadableFile),
 };
 
 const checks = {
@@ -48,9 +54,12 @@ const checks = {
 const vendor = [
   'react',
   'react-dom',
+  'react-router',
+  'react-router-dom',
   'redux',
   'react-redux',
   'redux-thunk',
+  'react-loadable',
 ];
 
 module.exports = {

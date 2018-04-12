@@ -1,9 +1,10 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
 const settings = require('./settings');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const merge = require('merge');
+const baseConfig = require('./webpack.config.base.js');
 
 function webpackConfig() {
   const entryPoints = [
@@ -14,7 +15,10 @@ function webpackConfig() {
   ];
 
   const config = {
-    entry: entryPoints,
+    entry: {
+      main: entryPoints,
+      vendor: settings.vendor,
+    },
     output: {
       filename: settings.options.fileName,
       /* Path to output file name */
@@ -31,64 +35,6 @@ function webpackConfig() {
       publicPath: settings.paths.publicPath,
       disableHostCheck: true,
     },
-    module: {
-      rules: [
-        {
-          enforce: 'pre',
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-        },
-        {
-          enforce: 'pre',
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          loader: 'tslint-loader',
-          options: {
-            configFile: 'tslint.json',
-            emitErrors: true,
-          },
-        },
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: [
-            { loader: 'babel-loader' },
-            { loader: 'ts-loader' },
-          ],
-        },
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          use: [
-            { loader: 'babel-loader', options: { cacheDirectory: true } },
-          ],
-        },
-        {
-          test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader'],
-          }),
-        },
-        {
-          test: /\.(png|jpg|gif|webp)$/,
-          exclude: /node_modules/,
-          use: [{
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              context: '', // TODO: SET CONTEXT
-              outputPath: 'img/',
-            },
-          }],
-        },
-        {
-          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-          loader: 'url-loader?limit=100000',
-        },
-      ],
-    }, // module
 
     plugins: [
       // Enable HMR globally
@@ -114,25 +60,37 @@ function webpackConfig() {
         title: settings.packageJson.name,
       }),
 
-      new ExtractTextPlugin('[name].css'),
-
       new CaseSensitivePathsPlugin(),
+
+      new ExtractTextPlugin(settings.options.cssBundleFileName),
     ],
 
-    resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      modules: [
-        __dirname,
-        settings.paths.nodeModules,
-      ],
-    }, // resolve
+    optimization: {
+      occurrenceOrder: true,
+      splitChunks: {
+        cacheGroups: {
+          main: {
+            name: 'main',
+            chunks: 'async',
+            minChunks: 2,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+            minChunks: 2,
+          },
+        },
+      },
+    },
+
     node: {
       fs: 'empty',
       child_process: 'empty',
     }, // node
   };
 
-  return config;
+  return merge(baseConfig, config);
 }
 
 module.exports = webpackConfig;
