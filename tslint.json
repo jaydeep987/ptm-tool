@@ -1,12 +1,21 @@
 {
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": [
+    "tslint:latest",
+    "tslint-eslint-rules",
+    "tslint-react"
+  ],
   "rules": {
+    "member-access": [true, "no-public"],
     "quotemark": [true, "single", "jsx-double"],
     "jsx-wrap-multiline": false,
     "no-submodule-imports": [false],
     "no-unused-expression": [true],
     "max-line-length": [true, 180],
     "object-literal-sort-keys": [false],
-    "no-console": [false]
+    "no-console": [false],
+    "no-trailing-whitespace": [true],
+    "one-variable-per-declaration": [true, "ignore-for-loop"],
+    "only-arrow-functions": [true, "allow-named-functions"],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"]
   }
 }

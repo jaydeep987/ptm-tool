@@ -2,6 +2,7 @@
 import fs = require('fs');
 import https = require('https');
 import jsonServer = require('json-server');
+import path = require('path');
 import parse from 'url';
 
 import config from '../client/config';
@@ -12,10 +13,9 @@ const PORT = 3001;
 const server = jsonServer.create();
 const router = jsonServer.router(getData());
 const middlewares = jsonServer.defaults();
-const HOME = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 const httpsServerOptions: object = {
-  key: fs.readFileSync(`${HOME}/.ssl/key.pem`),
-  cert: fs.readFileSync(`${HOME}/.ssl/cert.pem`),
+  key: fs.readFileSync(path.join(__dirname, '.ssl/key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, './.ssl/cert.pem')),
 };
 
 server.use(middlewares);

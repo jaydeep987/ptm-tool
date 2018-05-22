@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  fakeapi:
+    container_name: ptm_fakeapi
+    build:
+      context: .
+      dockerfile: ./fake-api/Dockerfile
+    ports:
+      - "3001:3001"
+  clientbuild:
+    container_name: ptm_client_build
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    volumes:
+      - ptm_src:/usr/src/app
+  startssr:
+    container_name: ptm_ssr
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    environment:
+      - $API_HOST_PNAME=$API_HOST_PVAL
+    volumes:
+      - ptm_src:/usr/src/app
+    ports:
+      - "3002:3002"
+    depends_on:
+      - clientbuild
+volumes:
+    ptm_src:

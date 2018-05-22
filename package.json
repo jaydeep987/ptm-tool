@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=development USE_FAKE_API=true webpack-dev-server --env=dev --mode development",
+    "start": "NODE_ENV=development USE_FAKE_API=true webpack-dev-server --env=dev --host 0.0.0.0 --mode development --inline",
     "start:express": "cross-env NODE_ENV=development nodemon --watch '**/*.tsx' --exec 'ts-node' server/server.tsx",
     "start:fake-server": "ts-node fake-api/server.ts",
     "clean": "rimraf *_build static",
     "build:client": "npm run clean && NODE_ENV=development USE_FAKE_API=true webpack --env=dev --mode development --config=webpack/webpack.config.dev.build.js",
     "build:vendor": "webpack --mode development --config webpack/webpack.vendor.config.js",
-    "build:prod": "webpack --env=prod --mode=production"
+    "build:prod": "webpack --env=prod --mode=production",
+    "docker:build-deps": "docker build --tag ptm/nodedeps .",
+    "docker:build-fakeapi": "docker-compose build fakeapi",
+    "docker:run-fakeapi": "npm run docker:build-fakeapi && docker-compose up --remove-orphans -d fakeapi",
+    "docker:build-ssr": "docker-compose build clientbuild && docker-compose build startssr",
+    "docker:run-ssr-dev": "sh ./scripts/run-ssr-dev.sh",
+    "docker:run-ssr-prod": "sh ./scripts/run-ssr-prod.sh"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
@@ -103,9 +109,11 @@
     "ts-loader": "^4.1.0",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
+    "tslint-eslint-rules": "^5.3.1",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2",
+    "typescript-eslint-parser": "^15.0.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",

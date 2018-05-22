@@ -18,6 +18,8 @@ export enum NODE_ENV {
   PROD = 'production',
 }
 
+console.log(process.env.DEVAPIHOST);
+
 const apiConfig: any = {
   dev: {
     host: process.env.DEVAPIHOST || 'localhost',
