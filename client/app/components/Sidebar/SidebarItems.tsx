@@ -23,7 +23,7 @@ export default class SidebarItems extends React.Component<any, any> {
     super(props);
   }
 
-  public render() {
+  render() {
     return(
       <div>
         <Menu>

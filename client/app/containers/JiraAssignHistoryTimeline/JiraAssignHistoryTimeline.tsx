@@ -46,7 +46,7 @@ class JiraAssignHistoryTimeline extends React.Component<IHomeProps, IHomeState> 
     this.loadGraph = this.loadGraph.bind(this);
   }
 
-  public render() {
+  render() {
     const loadBtnStyle: object = {
         marginLeft: 10,
     };

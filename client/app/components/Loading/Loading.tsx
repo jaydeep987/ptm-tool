@@ -12,7 +12,7 @@ export default class Loading extends React.Component<any, any> {
     super(props);
   }
 
-  public render() {
+  render() {
     return (
       <RefreshIndicator status="loading" size={40} top={0} left={10} style={LoadingStyle} {...this.props} />
     );

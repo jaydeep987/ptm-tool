@@ -11,10 +11,10 @@ declare global {
 }
 
 export class GetGoogleCharts {
-  public api: any;
+  api: any;
   private scriptPromise: any;
 
-  public loadScript() {
+  loadScript() {
     if (!this.scriptPromise) {
       this.scriptPromise = new Promise((resolve) => {
         const body = document.getElementsByTagName('body')[0];
@@ -34,7 +34,7 @@ export class GetGoogleCharts {
     return this.scriptPromise;
   }
 
-  public load(callback, type) {
+  load(callback, type) {
     return this.loadScript().then(() => {
       if (type) {
         if (!Array.isArray(type)) {

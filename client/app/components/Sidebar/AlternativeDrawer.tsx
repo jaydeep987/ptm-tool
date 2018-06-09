@@ -15,7 +15,7 @@ export default class AlternativeDrawer extends React.Component<IAlternativeDrawe
     super(props);
   }
 
-  public render() {
+  render() {
     return(
       <div>
         <Drawer containerStyle={sidebarStyles.secondDrawer} open={this.props.open}>

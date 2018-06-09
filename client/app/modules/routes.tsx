@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
 
-import { HomeLandingPage, JiraAssignHistoryTimeline, NewTaskForm } from '../containers';
+import { HomeLandingPage, JiraAssignHistoryTimeline, RegisterNewTask } from '../containers';
 
 const routesData = [
   {
@@ -11,7 +11,7 @@ const routesData = [
   },
   {
     path: '/newTaskForm',
-    component: NewTaskForm,
+    component: RegisterNewTask,
   },
   {
     path: '/jiraAssignTimeline',

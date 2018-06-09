@@ -24,7 +24,7 @@ export default class SidebarHeader extends React.Component<ISidebarHeaderProps, 
     super(props);
   }
 
-  public render() {
+  render() {
     return(
       <div>
         <header>

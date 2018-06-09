@@ -7,7 +7,7 @@ class HomeLandingPage extends React.Component<any, any> {
     super(props);
   }
 
-  public render() {
+  render() {
     const title: string = `I wanna show something overview or most useful things of tool here.
     So that at first sight, we can see what everyday we need.
     Like Dashboard ?`;

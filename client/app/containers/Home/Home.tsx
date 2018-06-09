@@ -16,7 +16,7 @@ class Home extends React.Component<any, any> {
     super(props, state);
   }
 
-  public render() {
+  render() {
     return(
       <div>
         <SidebarMenu />

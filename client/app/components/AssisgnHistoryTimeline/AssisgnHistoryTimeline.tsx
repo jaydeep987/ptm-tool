@@ -28,11 +28,11 @@ export default class AssisgnHistoryTimeline extends React.Component<any, any> {
     };
   }
 
-  public componentWillMount() {
+  componentWillMount() {
     this.chartOptions.data = generateAndGetChartData(this.props.data);
   }
 
-  public render() {
+  render() {
     return (
       <div>
         <TimelineChart chartOptions={this.chartOptions} />

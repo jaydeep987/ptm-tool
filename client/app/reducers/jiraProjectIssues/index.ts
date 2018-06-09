@@ -10,7 +10,7 @@ export interface IJiraHistoryIssuesReducerState {
   issuesData?: any;
 }
 
-export default function(state: IJiraHistoryIssuesReducerState = initialData, action): IJiraHistoryIssuesReducerState {
+export default (state: IJiraHistoryIssuesReducerState = initialData, action): IJiraHistoryIssuesReducerState => {
   switch (action.type) {
     case actions.ACTION_REQUEST_JIRA_PROJECT_ISSUES:
       return {
@@ -26,4 +26,4 @@ export default function(state: IJiraHistoryIssuesReducerState = initialData, act
     default:
       return state;
   }
-}
+};

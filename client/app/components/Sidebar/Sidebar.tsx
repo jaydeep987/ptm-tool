@@ -30,14 +30,14 @@ class Sidebar extends React.Component<ISidebarProps, any> {
     this.isRedirect = this.props.redirectToDefaultRoute;
   }
 
-  public componentWillMount() {
+  componentWillMount() {
     const menus: any[] = this.props.menus || [];
     const foundMenu: any = menus.find((menu) => menu.default) || {}; // find default route and redirect
     this.defaultTargetRoute = foundMenu.targetRoute || '';
     this.isRedirect = this.isRedirect && this.defaultTargetRoute && true;
   }
 
-  public render() {
+  render() {
     return (
       <div>
         <Drawer width={sidebarStyles.mainDrawer.width} containerStyle={sidebarStyles.mainDrawer} open={this.props.open}>

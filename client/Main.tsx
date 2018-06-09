@@ -33,7 +33,7 @@ export default class Main extends React.Component<any, any> {
    * If this doesn't work, it might be because you are using old version of react-router-redux
    * https://github.com/ReactTraining/react-router/issues/5428
    */
-  public render() {
+  render() {
     const store: Store<any> = configureStore(window.__PRELOADED_STATE__, history);
     return (
       <Provider store={store}>

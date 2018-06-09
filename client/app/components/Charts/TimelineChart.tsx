@@ -77,14 +77,14 @@ class TimelineChart extends React.Component<ITimelineChartProps, any> {
     };
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     const google =  window.google;
 
     this.drawTimeLine = this.drawTimeLine.bind(this);
     GoogleCharts.load(this.drawTimeLine, 'timeline');
   }
 
-  public render() {
+  render() {
     return (
       <div style={containerStyle}>
         {this.props.isLoading && <Loading left={100} />}
